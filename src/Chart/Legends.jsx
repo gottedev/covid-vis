@@ -4,6 +4,7 @@ function Legends({ data, dimensions, scale }) {
   return data.map((d, i) => {
     return (
       <g
+        key={i}
         fill={`${scale(d.value)}`}
         transform={`translate(${dimensions.boundedWidth - 100},${
           i * 25 - 45
