@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import * as d3 from "d3";
 import sorter from "lodash.sortby";
-import ResizeObserver from "resize-observer-polyfill";
 
 export const dateFilter = (startDate, endDate, data) => {
   const momentFormat = (d) => moment(d);

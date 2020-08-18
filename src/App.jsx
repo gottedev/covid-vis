@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import * as d3 from "d3";
 import moment from "moment";
 import axios from "axios";
@@ -9,7 +9,6 @@ import {
   areaFilter,
   groupDataByKey,
   sortBy,
-  useCurrentWitdh,
   useCurrentResolution,
 } from "./Chart/utils";
 import "./App.css";

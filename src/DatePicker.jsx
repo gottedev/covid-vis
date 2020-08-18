@@ -4,14 +4,7 @@ import moment from "moment";
 import { DateRangePicker } from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 
-function DatePicker({
-  setStartDate,
-  setEndDate,
-  startDate,
-  endDate,
-  handleDatesChange,
-  orientation,
-}) {
+function DatePicker({ startDate, endDate, handleDatesChange, orientation }) {
   const [focusedInput, setFocusedInput] = useState(null);
 
   const momentFormat = (d) => moment(d);
