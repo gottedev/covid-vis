@@ -70,7 +70,7 @@ const Histogram = ({
     const yScale = d3
       .scaleLinear()
       .domain(valuesRange)
-      .range([dimensions.boundedHeight, 0]);
+      .range([dimensions.boundedHeight, 20]);
 
     const xBand = d3
       .scaleBand()
