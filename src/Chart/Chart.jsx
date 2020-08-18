@@ -7,7 +7,6 @@ const ChartContext = createContext();
 export const useChartDimensions = () => useContext(ChartContext);
 
 const Chart = ({ dimensions, children }) => {
-  console.log(dimensions);
   return (
     <ChartContext.Provider value={dimensions}>
       <svg

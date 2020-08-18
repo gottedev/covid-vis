@@ -37,8 +37,6 @@ function App() {
 
   const customMarginHeight = (65 / 100) * customHeight;
 
-  console.log(customMarginHeight);
-
   useEffect(() => {
     const covidData = async () => {
       const getData = await axios.get("/covid-08-06-2020.json");
