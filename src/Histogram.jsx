@@ -21,11 +21,18 @@ const Histogram = ({
   customMarginHeight,
 }) =>
   useMemo(() => {
-    const height = customMarginHeight;
-    const width = customWidth > 1000 ? 800 : customMarginWidth;
-    const marginTop = 100;
+    // const height = customMarginHeight;
+    // const width = customWidth > 1000 ? 800 : customMarginWidth;
+    // const marginTop = 100;
+    // const marginBottom = 100;
+    // const marginLeft = customWidth > 1000 ? 100 : 25;
+    // const marginRight = customWidth > 1000 ? 100 : 25;
+
+    const height = 600;
+    const width = 800;
+    const marginTop = customWidth > 1000 ? 100 : 0;
     const marginBottom = 100;
-    const marginLeft = customWidth > 1000 ? 100 : 25;
+    const marginLeft = customWidth > 1000 ? 100 : 70;
     const marginRight = customWidth > 1000 ? 100 : 25;
 
     let dimensions = {

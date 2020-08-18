@@ -9,6 +9,7 @@
   border-top-left-radius: 2%;
   border-top-right-radius: 2%;
   margin-top: 2%;
+  overflow: auto;
 }
 
 .App {
@@ -54,6 +55,13 @@
   #root {
     width: 100%;
     min-width: 100%;
+    overflow: auto;
+  }
+  .Histogram svg {
+    margin-top: 100px;
+    max-height: 50%;
+    width: 80%;
+    max-width: 100%;
   }
   .area__select {
     min-width: 40%;
@@ -76,6 +84,14 @@
     width: 100%;
     min-width: 100%;
     min-height: 100%;
+    overflow: auto;
+  }
+
+  .Histogram svg {
+    margin-top: 100px;
+    height: 70%;
+    width: 80%;
+    max-width: 100%;
   }
 
   .area__select {
@@ -107,6 +123,14 @@
     width: 100%;
     min-width: 100%;
     min-height: 100%;
+    overflow: auto;
+  }
+
+  .Histogram svg {
+    margin-top: 100px;
+    height: 70%;
+    width: 80%;
+    max-width: 100%;
   }
 
   /* .DateRangePicker {
@@ -138,6 +162,13 @@
     min-width: 100%;
     min-height: 100%;
     overflow: auto;
+  }
+
+  .Histogram svg {
+    margin-top: 100px;
+    height: 70%;
+    width: 80%;
+    max-width: 100%;
   }
   .date__picker {
     width: 98%;

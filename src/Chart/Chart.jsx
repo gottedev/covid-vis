@@ -6,17 +6,25 @@ import "./Chart.css";
 const ChartContext = createContext();
 export const useChartDimensions = () => useContext(ChartContext);
 
-const Chart = ({ dimensions, children }) => (
-  <ChartContext.Provider value={dimensions}>
-    <svg className="Chart" width={dimensions.width} height={500}>
-      <g
-        transform={`translate(${dimensions.marginLeft}, ${dimensions.marginTop})`}
+const Chart = ({ dimensions, children }) => {
+  console.log(dimensions);
+  return (
+    <ChartContext.Provider value={dimensions}>
+      <svg
+        className="Chart"
+        width={dimensions.width}
+        height={dimensions.height}
+        viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
       >
-        {children}
-      </g>
-    </svg>
-  </ChartContext.Provider>
-);
+        <g
+          transform={`translate(${dimensions.marginLeft}, ${dimensions.marginTop})`}
+        >
+          {children}
+        </g>
+      </svg>
+    </ChartContext.Provider>
+  );
+};
 
 Chart.propTypes = {
   dimensions: dimensionsPropsType,
