@@ -8,8 +8,8 @@ const axisComponentsByDimension = {
   x: AxisHorizontal,
   y: AxisVertical,
 };
-const Axis = ({ dimension, ...props }) => {
-  const dimensions = useChartDimensions();
+const Axis = ({ dimension, dimensions, ...props }) => {
+  // const dimensions = useChartDimensions();
   const Component = axisComponentsByDimension[dimension];
   if (!Component) return null;
 
@@ -31,7 +31,14 @@ Axis.defaultProps = {
 
 export default Axis;
 
-function AxisHorizontal({ dimensions, label, formatTick, scale, ...props }) {
+function AxisHorizontal({
+  dimensions,
+  label,
+  formatTick,
+  scale,
+  barBandWidth,
+  ...props
+}) {
   const numberOfTicks =
     dimensions.boundedWidth < 600
       ? dimensions.boundedWidth / 100
@@ -47,7 +54,10 @@ function AxisHorizontal({ dimensions, label, formatTick, scale, ...props }) {
       transform={`translate(0, ${dimensions.boundedHeight})`}
       {...props}
     >
-      <line className="Axis__line" x2={dimensions.boundedWidth} />
+      <line
+        className="Axis__line"
+        x2={dimensions.boundedWidth + barBandWidth}
+      />
 
       {ticks.map((tick, i) => (
         <text
@@ -62,7 +72,7 @@ function AxisHorizontal({ dimensions, label, formatTick, scale, ...props }) {
       {label && (
         <text
           className="Axis__label"
-          transform={`translate(${dimensions.boundedWidth / 2}, 90)`}
+          transform={`translate(${dimensions.boundedWidth / 2}, 70)`}
         >
           {label}
         </text>
@@ -74,7 +84,7 @@ function AxisHorizontal({ dimensions, label, formatTick, scale, ...props }) {
 function AxisVertical({ dimensions, label, formatTick, scale, ...props }) {
   const numberOfTicks = dimensions.boundedHeight / 70;
 
-  const ticks = scale.ticks(numberOfTicks);
+  const ticks = scale.ticks();
 
   return (
     <g className="Axis AxisVertical" {...props}>
@@ -94,7 +104,7 @@ function AxisVertical({ dimensions, label, formatTick, scale, ...props }) {
         <text
           className="Axis__label"
           style={{
-            transform: `translate(-56px, ${
+            transform: `translate(-46px, ${
               dimensions.boundedHeight / 2
             }px) rotate(-90deg)`,
           }}

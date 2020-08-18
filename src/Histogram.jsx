@@ -9,14 +9,24 @@ import Legends from "./Chart/Legends";
 import { accessorPropsType } from "./Chart/utils";
 
 const fillColors = ["#FC766AFF", "#5B84B1FF"];
-const Histogram = ({ data, xAccessor, yAccessor, label, selectedValues }) =>
+const Histogram = ({
+  data,
+  xAccessor,
+  yAccessor,
+  label,
+  selectedValues,
+  customWidth,
+  customMarginWidth,
+  customHeight,
+  customMarginHeight,
+}) =>
   useMemo(() => {
-    const height = 600;
-    const width = 800;
+    const height = customMarginHeight;
+    const width = customWidth > 1000 ? 800 : customMarginWidth;
     const marginTop = 100;
     const marginBottom = 100;
-    const marginLeft = 100;
-    const marginRight = 100;
+    const marginLeft = customWidth > 1000 ? 100 : 25;
+    const marginRight = customWidth > 1000 ? 100 : 25;
 
     let dimensions = {
       height,
@@ -28,6 +38,7 @@ const Histogram = ({ data, xAccessor, yAccessor, label, selectedValues }) =>
       boundedHeight: Math.max(height - marginTop - marginBottom, 0),
       boundedWidth: Math.max(width - marginLeft - marginRight, 0),
     };
+
     const nullRemovedData = data.filter((area) => {
       if (area.values.length > 0) {
         return area.key;
@@ -47,24 +58,25 @@ const Histogram = ({ data, xAccessor, yAccessor, label, selectedValues }) =>
     const xScale = d3
       .scaleTime()
       .domain(dateRange)
-      .rangeRound([0, dimensions.boundedWidth]);
+      .range([0, dimensions.boundedWidth]);
 
     const yScale = d3
       .scaleLinear()
       .domain(valuesRange)
-      .range([dimensions.boundedHeight, 0])
-      .nice();
+      .range([dimensions.boundedHeight, 0]);
 
     const xBand = d3
       .scaleBand()
       .domain(allDates)
-      .rangeRound([0, dimensions.boundedWidth])
-      .padding(0.4);
+      .range([0, dimensions.boundedWidth])
+      .padding(0.2);
 
     const xBand1 = d3
       .scaleBand()
       .domain(selectedAreas)
-      .rangeRound([0, xBand.bandwidth()]);
+      .range([0, xBand.bandwidth()]);
+
+    const barBandWidth = xBand.bandwidth();
 
     const color = d3.scaleOrdinal().domain(selectedAreas).range(fillColors);
 
@@ -91,6 +103,7 @@ const Histogram = ({ data, xAccessor, yAccessor, label, selectedValues }) =>
             dimension="x"
             scale={xScale}
             label={label}
+            barBandWidth={barBandWidth}
           />
           <Axis
             dimensions={dimensions}
@@ -111,7 +124,7 @@ const Histogram = ({ data, xAccessor, yAccessor, label, selectedValues }) =>
         </Chart>
       </div>
     );
-  }, [label, data]);
+  }, [label, data, customMarginWidth, customWidth]);
 
 Histogram.propTypes = {
   xAccessor: accessorPropsType,

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import moment from "moment";
@@ -144,6 +144,39 @@ export const combineChartDimensions = (dimensions) => {
     ),
   };
 };
+
+const getWidth = () =>
+  window.innerWidth ||
+  document.documentElement.clientWidth ||
+  document.body.clientWidth;
+
+const getHeight = () =>
+  window.innerHeight ||
+  document.documentElement.clientHeight ||
+  document.body.clientHeight;
+
+export function useCurrentResolution() {
+  let [width, setWidth] = useState(getWidth());
+  let [height, setHeight] = useState(getHeight());
+
+  useEffect(() => {
+    let timeoutId = null;
+    const resizeListener = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setWidth(getWidth());
+        setHeight(getHeight());
+      }, 150);
+    };
+    window.addEventListener("resize", resizeListener);
+
+    return () => {
+      window.removeEventListener("resize", resizeListener);
+    };
+  }, []);
+
+  return [height, width];
+}
 
 export const useChartDimensions = (passedSettings) => {
   const ref = useRef();

@@ -10,6 +10,7 @@ function DatePicker({
   startDate,
   endDate,
   handleDatesChange,
+  orientation,
 }) {
   const [focusedInput, setFocusedInput] = useState(null);
 
@@ -21,6 +22,8 @@ function DatePicker({
   return (
     <div className="App">
       <DateRangePicker
+        block={true}
+        daySize={30}
         minDate={minDate}
         maxDate={maxDate}
         startDate={startDate}
@@ -34,6 +37,7 @@ function DatePicker({
         onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
         showDefaultInputIcon
         inputIconPosition="after"
+        orientation={orientation}
       />
     </div>
   );

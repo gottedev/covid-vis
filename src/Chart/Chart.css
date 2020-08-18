@@ -28,12 +28,12 @@
 
 .Axis__label {
   text-anchor: middle;
-  font-size: 0.9em;
+  font-size: 0.5em;
   letter-spacing: 0.01em;
 }
 
 .Axis__tick {
-  font-size: 0.8em;
+  font-size: 0.5em;
   transition: all 0.3s ease-out;
 }
 

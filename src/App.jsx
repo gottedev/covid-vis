@@ -4,7 +4,14 @@ import moment from "moment";
 import axios from "axios";
 import Histogram from "./Histogram";
 import DatePicker from "./DatePicker";
-import { dateFilter, areaFilter, groupDataByKey, sortBy } from "./Chart/utils";
+import {
+  dateFilter,
+  areaFilter,
+  groupDataByKey,
+  sortBy,
+  useCurrentWitdh,
+  useCurrentResolution,
+} from "./Chart/utils";
 import "./App.css";
 import CustomSelect from "./Chart/CustomSelect";
 
@@ -24,6 +31,14 @@ function App() {
   const parseDate = d3.timeFormat("%d/%m/%Y");
   const dateAccessor = (d) => parseDate(d.specimenDate);
   const casesAccessor = (d) => d.dailyLabConfirmedCases;
+
+  const [customHeight, customWidth] = useCurrentResolution();
+
+  const customMarginWidth = customWidth - (20 / 100) * customWidth;
+
+  const customMarginHeight = (65 / 100) * customHeight;
+
+  console.log(customMarginHeight);
 
   useEffect(() => {
     const covidData = async () => {
@@ -54,13 +69,22 @@ function App() {
   }, []);
 
   const selectStyles = {
-    control: () => ({
-      width: "400px",
+    control: (props) => ({
+      ...props,
       display: "flex",
+      background: "white",
+      height: "48px",
+      borderRadius: "2px",
+      border: "1px solid #dbdbdb",
     }),
     menu: () => ({
-      width: "400px",
       maxHeight: "40px",
+      background: "white",
+    }),
+    menuList: (props) => ({
+      ...props,
+      background: "white",
+      height: "auto",
     }),
   };
 
@@ -96,28 +120,39 @@ function App() {
 
   return (
     <div className="App">
-      <div className="date__picker">
-        <DatePicker
-          startDate={startDate}
-          endDate={endDate}
-          setStartDate={setStartDate}
-          setEndDate={setEndDate}
-          handleDatesChange={handleDatesChange}
-        />
+      <h1 className="title">Covid Histogram</h1>
+      <div className="chart__controls">
+        <div className="date__picker">
+          <DatePicker
+            startDate={startDate}
+            endDate={endDate}
+            setStartDate={setStartDate}
+            setEndDate={setEndDate}
+            handleDatesChange={handleDatesChange}
+            orientation={customWidth > 600 ? "horizontal" : "vertical"}
+          />
+        </div>
+        <div className="area__select">
+          <CustomSelect
+            options={areas}
+            styles={selectStyles}
+            defaultValue={{ value: "County Durham", label: "County Durham" }}
+            onChangeHandler={handleSelect}
+            value={selectedArea}
+          />
+        </div>
       </div>
-      <CustomSelect
-        options={areas}
-        styles={selectStyles}
-        defaultValue={{ value: "County Durham", label: "County Durham" }}
-        onChangeHandler={handleSelect}
-        value={selectedArea}
-      />
+
       <Histogram
         xAccessor={dateAccessor}
         yAccessor={casesAccessor}
         data={dateWiseData}
         selectedValues={selectedArea}
         label="Daily cases"
+        customWidth={customWidth}
+        customHeight={customHeight}
+        customMarginHeight={customMarginHeight}
+        customMarginWidth={customMarginWidth}
       />
     </div>
   );
