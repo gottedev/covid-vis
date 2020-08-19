@@ -40,7 +40,7 @@ function App() {
 
   useEffect(() => {
     const covidData = async () => {
-      const getData = await axios.get("/covid-18-08-2020.json");
+      const getData = await axios.get("./covid-18-08-2020.json");
       const areaData = await getData.data.ltlas;
       const groupDataByDate = groupDataByKey("specimenDate", areaData);
       const areaNames = [
