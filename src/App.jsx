@@ -117,7 +117,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="title">Covid Histogram</h1>
+      <h1 className="title">Coronavirus Daily Vis</h1>
       <div className="chart__controls">
         <div className="date__picker">
           <DatePicker
@@ -152,6 +152,10 @@ function App() {
         customMarginWidth={customMarginWidth}
       />
       <p>Data Source http://coronavirus.data.gov.uk/</p>
+      <p>
+        This App is based on previous api of http://coronavirus.data.gov.uk/ I
+        am working on the new api
+      </p>
     </div>
   );
 }
