@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as d3 from "d3";
+import { formatDate } from "./utils";
 
 const axisComponentsByDimension = {
   x: AxisHorizontal,
@@ -41,8 +42,6 @@ function AxisHorizontal({
       ? dimensions.boundedWidth / 100
       : dimensions.boundedWidth / 250;
 
-  const formatXScale = d3.timeFormat("%d/%m/%y");
-
   const ticks = scale.ticks();
 
   return (
@@ -62,7 +61,7 @@ function AxisHorizontal({
           className="Axis__tick"
           transform={`translate(${scale(tick)}, 35) rotate(-70)`}
         >
-          {formatXScale(tick)}
+          {formatDate(tick)}
         </text>
       ))}
 
