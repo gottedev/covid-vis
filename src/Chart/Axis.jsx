@@ -42,7 +42,7 @@ function AxisHorizontal({
       ? dimensions.boundedWidth / 100
       : dimensions.boundedWidth / 250;
 
-  const ticks = scale.ticks();
+  const ticks = scale.ticks(numberOfTicks);
 
   return (
     <g

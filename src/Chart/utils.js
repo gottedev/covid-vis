@@ -61,38 +61,6 @@ export const areaFilter = (selectedArea, data) => {
   return optedArea;
 };
 
-export const getPaginatedData = async (filters, structure) => {
-  const endpoint = "https://api.coronavirus.data.gov.uk/v1/data";
-  let result = [];
-  for (const [i, d] of filters.entries()) {
-    const apiParams = {
-      filters: d.join(";"),
-      structure: JSON.stringify(structure),
-    };
-
-    let nextPage = null;
-    let currentPage = 1;
-
-    do {
-      const { data, status, statusText } = await axios.get(endpoint, {
-        params: {
-          ...apiParams,
-          page: currentPage,
-        },
-        timeout: 10000,
-      });
-
-      if (status >= 400) throw Error(statusText);
-
-      if ("pagination" in data) nextPage = data.pagination.next || null;
-      const datalist = await data.data;
-      result.push(...datalist);
-      currentPage++;
-    } while (nextPage);
-  }
-  return result;
-};
-
 export const formatDate = (date) => {
   const format = d3.timeFormat("%d/%m/%y");
   return format(date);

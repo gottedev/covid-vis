@@ -10,6 +10,7 @@ import {
   groupDataByKey,
   sortBy,
   useCurrentResolution,
+  getPaginatedData,
 } from "./Chart/utils";
 import "./App.css";
 import CustomSelect from "./Chart/CustomSelect";
@@ -39,7 +40,7 @@ function App() {
 
   useEffect(() => {
     const covidData = async () => {
-      const getData = await axios.get("/covid-08-06-2020.json");
+      const getData = await axios.get("/covid-18-08-2020.json");
       const areaData = await getData.data.ltlas;
       const groupDataByDate = groupDataByKey("specimenDate", areaData);
       const areaNames = [
@@ -154,7 +155,8 @@ function App() {
       <p>Data Source http://coronavirus.data.gov.uk/</p>
       <p>
         This App is based on previous api of http://coronavirus.data.gov.uk/ I
-        am working on the new api
+        am working on the new api. <br /> Note: Data is available only upto
+        17/08/2020
       </p>
     </div>
   );

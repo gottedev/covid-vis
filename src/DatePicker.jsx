@@ -10,7 +10,7 @@ function DatePicker({ startDate, endDate, handleDatesChange, orientation }) {
   const momentFormat = (d) => moment(d);
 
   const minDate = momentFormat("01/01/2020");
-  const maxDate = momentFormat("06/06/2020");
+  const maxDate = momentFormat("18/08/2020");
 
   const renderCalendarInfo = () => (
     <span> please select between 7 days and 30 days</span>
