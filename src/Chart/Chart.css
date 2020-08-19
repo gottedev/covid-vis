@@ -17,6 +17,10 @@
   stroke-linecap: round;
 }
 
+svg text tspan {
+  display: block;
+}
+
 .Line--type-area {
   fill: rgba(152, 128, 250, 0.185);
   stroke-width: 0;

@@ -93,6 +93,17 @@ export const getPaginatedData = async (filters, structure) => {
   return result;
 };
 
+export const formatDate = (date) => {
+  const format = d3.timeFormat("%d/%m/%y");
+  return format(date);
+};
+
+export const toolTip = (data) => {
+  return `${formatDate(new Date(data.specimenDate))} \n${
+    data.dailyLabConfirmedCases
+  }`;
+};
+
 export const groupDataByKey = (key, data) => {
   const groupedData = d3
     .nest()
