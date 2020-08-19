@@ -151,6 +151,7 @@ function App() {
         customMarginHeight={customMarginHeight}
         customMarginWidth={customMarginWidth}
       />
+      <p>Data Source http://coronavirus.data.gov.uk/</p>
     </div>
   );
 }
