@@ -14,6 +14,7 @@ function CustomSelect({
       isMulti
       name="colors"
       value={value}
+      aria-label="select one or two Area"
       options={options}
       defaultValue={defaultValue}
       onChange={onChangeHandler}
