@@ -27,8 +27,8 @@
 .chart__controls {
   margin-top: 80px;
   display: flex;
-  justify-content: flex-start;
-  flex-direction: row-reverse;
+  justify-content: flex-end;
+  flex-direction: row;
 }
 .date__picker {
   margin: 0px 10px;
@@ -67,8 +67,8 @@
   }
   .chart__controls {
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-start;
+    flex-direction: row;
+    justify-content: flex-end;
   }
   .date__picker {
     width: 50%;
@@ -108,7 +108,7 @@
   .chart__controls {
     width: 100%;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     align-items: center;
     justify-content: space-around;
   }

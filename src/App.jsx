@@ -119,6 +119,15 @@ function App() {
     <div className="App">
       <h1 className="title">Covid Histogram</h1>
       <div className="chart__controls">
+        <div className="area__select">
+          <CustomSelect
+            options={areas}
+            styles={selectStyles}
+            defaultValue={{ value: "County Durham", label: "County Durham" }}
+            onChangeHandler={handleSelect}
+            value={selectedArea}
+          />
+        </div>
         <div className="date__picker">
           <DatePicker
             startDate={startDate}
@@ -127,15 +136,6 @@ function App() {
             setEndDate={setEndDate}
             handleDatesChange={handleDatesChange}
             orientation={customWidth > 600 ? "horizontal" : "vertical"}
-          />
-        </div>
-        <div className="area__select">
-          <CustomSelect
-            options={areas}
-            styles={selectStyles}
-            defaultValue={{ value: "County Durham", label: "County Durham" }}
-            onChangeHandler={handleSelect}
-            value={selectedArea}
           />
         </div>
       </div>
