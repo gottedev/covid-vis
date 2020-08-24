@@ -66,11 +66,7 @@ const Histogram = ({
     .domain(selectedAreas)
     .range([0, xBand.bandwidth()]);
 
-<<<<<<< Updated upstream
-    const barBandWidth = xBand.bandwidth();
-=======
   const barBandWidth = xBand.bandwidth() > 100 ? 0 : xBand.bandwidth();
->>>>>>> Stashed changes
 
   const color = d3.scaleOrdinal().domain(selectedAreas).range(fillColors);
 
